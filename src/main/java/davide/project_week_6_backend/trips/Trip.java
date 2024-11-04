@@ -1,5 +1,6 @@
 package davide.project_week_6_backend.trips;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import davide.project_week_6_backend.bookings.Booking;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Trip {
     private Status status;
 
     @OneToOne(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private Booking booking;
 
     public Trip(String destination, LocalDate date, Status status) {

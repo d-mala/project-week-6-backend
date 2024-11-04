@@ -1,5 +1,6 @@
 package davide.project_week_6_backend.employees;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import davide.project_week_6_backend.bookings.Booking;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -34,7 +35,9 @@ public class Employee {
     @Column(nullable = false, name = "profile_image")
     private String profileImage;
 
+
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Booking> bookings;
 
     public Employee(String username, String firstName, String lastName, String email, String profileImage) {

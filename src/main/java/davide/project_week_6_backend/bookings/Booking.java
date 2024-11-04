@@ -1,5 +1,6 @@
 package davide.project_week_6_backend.bookings;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import davide.project_week_6_backend.employees.Employee;
 import davide.project_week_6_backend.trips.Trip;
 import jakarta.persistence.*;
@@ -28,10 +29,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
+    @JsonManagedReference
     private Employee employee;
 
     @OneToOne
-    @JoinColumn(name = "trip_id", nullable = false, unique = true)
+    @JoinColumn(name = "trip_id", nullable = false)
+    @JsonManagedReference
     private Trip trip;
 
     // Costruttore con tutti i campi eccetto l'ID
